@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Links | Mou-Stache</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin: 20px auto;
+            border: 2px solid #333;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #ffffff;
+        }
+        .bio {
+            margin: 0 auto 20px;
+            max-width: 500px;
+            color: #b0b0b0;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .link {
+            background: #1e1e1e;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .link:hover {
+            background: #333;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        .music-services {
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+        .music-services.active {
+            display: flex;
+        }
+        .music-link {
+            background: #2a2a2a;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: normal;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+            border: 1px solid #444;
+        }
+        .music-link:hover {
+            background: #444;
+            transform: translateY(-1px);
+        }
+        .cooperation {
+            margin-top: 25px;
+            padding: 15px;
+            color: #b0b0b0;
+            font-size: 14px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+        .cooperation-email {
+            color: #ffffff;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <img src="head.jpg" alt="Фото профиля" class="profile-img">
+    <h1>Mou-Stache</h1>
+    <p class="bio">Musician | Filmmaker | Editor</p>
+    
+    <div class="links">
+        <div class="link" id="musicButton">🎵 Music</div>
+        <div class="music-services" id="musicServices">
+            <a href="https://spotify.com/ваш-профиль" class="music-link">Spotify</a>
+            <a href="https://apple.music.com/ваш-профиль" class="music-link">Apple Music</a>
+            <a href="https://soundcloud.com/ваш-профиль" class="music-link">SoundCloud</a>
+            <a href="https://bandcamp.com/ваш-профиль" class="music-link">Bandcamp</a>
+            <a href="https://deezer.com/ваш-профиль" class="music-link">Deezer</a>
+            <a href="https://yandex.music.com/ваш-профиль" class="music-link">Yandex Music</a>
+        </div>
+        <a href="https://youtube.com/@moustnpmkn17?si=MtOw5nzHsVN2ZpSi" class="link">▶ YouTube</a>
+        <a href="https://www.instagram.com/moustnpmkn17?igsh=eWIzdm01N2p0em4z&utm_source=qr" class="link">📷 Instagram</a>
+        <a href="https://t.me/MouStachePortfolio" class="link">✈️ Telegram (showreel)</a>
+    </div>
+
+    <div class="cooperation">
+        cooperation<br>
+        <div class="cooperation-email">mousthenpmkn@gmail.com</div>
+    </div>
+
+    <script>
+        document.getElementById('musicButton').addEventListener('click', function() {
+            const musicServices = document.getElementById('musicServices');
+            musicServices.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
