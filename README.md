@@ -1,2 +1,1 @@
 moustache links
-links card
