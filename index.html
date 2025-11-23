@@ -14,6 +14,24 @@
             text-align: center;
             margin: 0;
             padding: 20px;
+            position: relative;
+            min-height: 100vh;
+        }
+        /* Фоновая картинка */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('hat.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.1;
+            filter: brightness(0.3);
+            z-index: -1;
         }
         .profile-img {
             width: 150px;
@@ -92,21 +110,53 @@
         .music-services.active {
             display: flex;
         }
+        .music-link-container {
+            position: relative;
+        }
         .music-link {
-            background: #2a2a2a;
-            color: #ffffff;
+            background: #252525;
+            color: #e0e0e0;
             padding: 10px;
             border-radius: 4px;
             text-decoration: none;
-            font-weight: normal;
+            font-weight: bold;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
             transition: all 0.2s ease;
             border: 1px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            font-size: 14px;
         }
-        .music-link:hover {
-            background: #444;
+        /* Подложки для музыкальных сервисов */
+        .music-background {
+            position: absolute;
+            bottom: -3px;
+            left: -2px;
+            width: 100%;
+            height: 100%;
+            border-radius: 4px;
+            z-index: 1;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        .music-link-container:hover .music-background {
+            opacity: 1;
+            bottom: -4px;
+            left: -3px;
+        }
+        .music-link-container:hover .music-link {
             transform: translateY(-1px);
         }
+        /* Цвета для каждого сервиса */
+        .spotify-bg { background: #1DB954; }
+        .apple-music-bg { background: #FA243C; }
+        .soundcloud-bg { background: #FF7700; }
+        .bandcamp-bg { background: #629AA9; }
+        .deezer-bg { background: #FEAA2D; }
+        .yandex-music-bg { background: #FFCC00; }
         .cooperation {
             margin-top: 25px;
             padding: 15px;
@@ -137,12 +187,30 @@
             <div class="link-background"></div>
         </div>
         <div class="music-services" id="musicServices">
-            <a href="https://spotify.com/ваш-профиль" class="music-link">Spotify</a>
-            <a href="https://apple.music.com/ваш-профиль" class="music-link">Apple Music</a>
-            <a href="https://soundcloud.com/ваш-профиль" class="music-link">SoundCloud</a>
-            <a href="https://bandcamp.com/ваш-профиль" class="music-link">Bandcamp</a>
-            <a href="https://deezer.com/ваш-профиль" class="music-link">Deezer</a>
-            <a href="https://yandex.music.com/ваш-профиль" class="music-link">Yandex Music</a>
+            <div class="music-link-container">
+                <a href="https://spotify.com/ваш-профиль" class="music-link">Spotify</a>
+                <div class="music-background spotify-bg"></div>
+            </div>
+            <div class="music-link-container">
+                <a href="https://apple.music.com/ваш-профиль" class="music-link">Apple Music</a>
+                <div class="music-background apple-music-bg"></div>
+            </div>
+            <div class="music-link-container">
+                <a href="https://soundcloud.com/ваш-профиль" class="music-link">SoundCloud</a>
+                <div class="music-background soundcloud-bg"></div>
+            </div>
+            <div class="music-link-container">
+                <a href="https://bandcamp.com/ваш-профиль" class="music-link">Bandcamp</a>
+                <div class="music-background bandcamp-bg"></div>
+            </div>
+            <div class="music-link-container">
+                <a href="https://deezer.com/ваш-профиль" class="music-link">Deezer</a>
+                <div class="music-background deezer-bg"></div>
+            </div>
+            <div class="music-link-container">
+                <a href="https://yandex.music.com/ваш-профиль" class="music-link">Yandex Music</a>
+                <div class="music-background yandex-music-bg"></div>
+            </div>
         </div>
         <div class="link-container">
             <a href="https://youtube.com/@moustnpmkn17?si=MtOw5nzHsVN2ZpSi" class="link">▶ YouTube</a>
