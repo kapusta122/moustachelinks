@@ -17,7 +17,7 @@
             position: relative;
             min-height: 100vh;
         }
-        /* Фоновая картинка */
+        /* Фоновая картинка с размытием */
         body::before {
             content: '';
             position: fixed;
@@ -29,18 +29,42 @@
             background-size: cover;
             background-position: center;
             background-attachment: scroll;
-            opacity: 0.5;
-            filter: brightness(0.8);
+            opacity: 0.4;
+            filter: brightness(0.6) blur(3px);
             z-index: -1;
+        }
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px auto;
         }
         .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 8px;
             object-fit: cover;
-            margin: 20px auto;
             border: 2px solid #333;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 12px 30px rgba(0, 0, 0, 0.7),
+                0 6px 15px rgba(0, 0, 0, 0.5),
+                0 3px 8px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+        /* Дополнительная тень для глубины */
+        .profile-img-container::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: -8px;
+            bottom: -8px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            z-index: 1;
+            filter: blur(8px);
         }
         h1 {
             margin: 10px 0;
@@ -177,7 +201,9 @@
     </style>
 </head>
 <body>
-    <img src="img/head.jpg" alt="Фото профиля" class="profile-img">
+    <div class="profile-img-container">
+        <img src="img/head.jpg" alt="Фото профиля" class="profile-img">
+    </div>
     <h1>Mou-Stache</h1>
     <p class="bio">Musician | Filmmaker | Editor</p>
     
