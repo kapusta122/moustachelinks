@@ -48,7 +48,7 @@
             z-index: 98;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.8s ease;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .dark-overlay.active {
             opacity: 1;
@@ -70,26 +70,27 @@
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
             z-index: 100;
         }
         .profile-card.flipped {
-            transform: rotateY(180deg) scale(1.3);
+            transform: rotateY(180deg) scale(1.25);
         }
         .profile-front, .profile-back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: 10px;
-            border: 2px solid #333;
+            border-radius: 12px;
+            border: 2px solid #444;
             box-shadow: 
-                0 15px 35px rgba(0, 0, 0, 0.8),
-                0 8px 20px rgba(0, 0, 0, 0.6),
-                0 4px 10px rgba(0, 0, 0, 0.4),
+                0 20px 40px rgba(0, 0, 0, 0.8),
+                0 10px 25px rgba(0, 0, 0, 0.6),
+                0 5px 15px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 0 0 0 1px rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .profile-front {
             background: #1e1e1e;
@@ -102,7 +103,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 10px;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .profile-card:hover .profile-front img {
+            transform: scale(1.08);
         }
         .profile-back {
             background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
@@ -120,12 +125,22 @@
             font-size: 18px;
             color: #EE7700;
             font-weight: bold;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .profile-card.flipped .profile-back h3 {
+            transform: scale(1.1);
+            color: #ff8c00;
         }
         .profile-back p {
             margin: 0;
             font-size: 13px;
             line-height: 1.5;
             color: #b0b0b0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .profile-card.flipped .profile-back p {
+            transform: scale(1.05);
+            color: #c0c0c0;
         }
         /* Дополнительная тень для глубины */
         .profile-img-container::after {
@@ -139,13 +154,13 @@
             border-radius: 14px;
             z-index: -1;
             filter: blur(12px);
-            transition: all 0.8s ease;
+            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             width: calc(100% + 24px);
             height: calc(100% + 24px);
             transform: translateX(-12px);
         }
         .profile-card.flipped ~ ::after {
-            transform: scale(1.3) translateX(-12px);
+            transform: scale(1.25) translateX(-12px);
         }
         .content-wrapper {
             display: flex;
@@ -171,7 +186,7 @@
         .links {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
             width: 100%;
             max-width: 500px;
         }
@@ -186,7 +201,7 @@
             text-decoration: none;
             font-weight: bold;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: 1px solid #333;
             cursor: pointer;
             display: flex;
@@ -195,6 +210,7 @@
             gap: 8px;
             position: relative;
             z-index: 2;
+            transform: scale(1);
         }
         .link-background {
             position: absolute;
@@ -206,7 +222,7 @@
             border-radius: 4px;
             z-index: 1;
             opacity: 0;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .link-container:hover .link-background {
             opacity: 1;
@@ -214,26 +230,26 @@
             left: -5px;
         }
         .link-container:hover .link {
-            transform: translateY(-2px);
+            transform: translateY(-3px) scale(1.03);
         }
         .music-services {
             max-height: 0;
             overflow: hidden;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
             margin-top: 0;
             width: 100%;
-            transition: max-height 0.4s ease, margin-top 0.4s ease;
+            transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), margin-top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .music-services.active {
             max-height: 500px;
-            margin-top: 15px;
+            margin-top: 10px;
         }
         .music-link-container {
             position: relative;
             opacity: 0;
-            transform: translateY(-8px);
-            transition: all 0.3s ease;
+            transform: translateY(-10px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .music-link-container.visible {
             opacity: 1;
@@ -242,12 +258,12 @@
         .music-link {
             background: #252525;
             color: #e0e0e0;
-            padding: 12px; /* Увеличено до такого же размера как основные кнопки */
+            padding: 10px;
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Такой же как у основных кнопок */
-            transition: all 0.3s ease; /* Увеличена длительность как у основных */
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             border: 1px solid #444;
             display: flex;
             align-items: center;
@@ -255,26 +271,27 @@
             position: relative;
             z-index: 2;
             font-size: 14px;
+            transform: scale(1);
         }
-        /* Подложки для музыкальных сервисов - такие же как у основных кнопок */
+        /* Подложки для музыкальных сервисов */
         .music-background {
             position: absolute;
-            bottom: -5px; /* Такой же отступ как у основных */
-            left: -3px; /* Такой же отступ как у основных */
+            bottom: -3px;
+            left: -2px;
             width: 100%;
             height: 100%;
             border-radius: 4px;
             z-index: 1;
             opacity: 0;
-            transition: all 0.3s ease; /* Такой же переход как у основных */
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .music-link-container:hover .music-background {
             opacity: 1;
-            bottom: -7px; /* Такой же эффект как у основных */
-            left: -5px; /* Такой же эффект как у основных */
+            bottom: -4px;
+            left: -3px;
         }
         .music-link-container:hover .music-link {
-            transform: translateY(-2px); /* Такой же эффект как у основных */
+            transform: translateY(-2px) scale(1.02);
         }
         /* Цвета для каждого сервиса */
         .spotify-bg { background: #1DB954; }
@@ -385,14 +402,14 @@
                     }, index * 80);
                 });
             } else {
-                // Скрываем сервисы последовательно (в обратном порядке)
+                // Скрываем сервисы последовательно (в обратном порядке для красивого эффекта)
                 const musicLinks = musicServices.querySelectorAll('.music-link-container');
                 const totalLinks = musicLinks.length;
                 
                 musicLinks.forEach((link, index) => {
                     setTimeout(() => {
                         link.classList.remove('visible');
-                    }, index * 80); // Одинаковый порядок для плавности
+                    }, (totalLinks - 1 - index) * 80); // Обратный порядок
                 });
             }
         });
