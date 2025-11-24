@@ -30,17 +30,41 @@
             background-position: center;
             background-attachment: scroll;
             opacity: 0.4;
-            filter: brightness(0.7);
+            filter: brightness(0.6);
             z-index: -1;
+        }
+        .profile-img-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px auto;
         }
         .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 8px;
             object-fit: cover;
-            margin: 20px auto;
             border: 2px solid #333;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.6),
+                0 4px 12px rgba(0, 0, 0, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
+            border-radius: 12px;
+            z-index: 1;
+            box-shadow: 
+                0 12px 35px rgba(0, 0, 0, 0.8),
+                0 6px 18px rgba(0, 0, 0, 0.6);
         }
         h1 {
             margin: 10px 0;
@@ -177,9 +201,11 @@
     </style>
 </head>
 <body>
-    <img src="img/head.jpg" alt="Фото профиля" class="profile-img">
+    <div class="profile-img-container">
+        <img src="img/head.jpg" alt="Фото профиля" class="profile-img">
+    </div>
     <h1>Mou-Stache</h1>
-    <p class="bio">Musician | Filmmaker | Sound Producer | Editor</p>
+    <p class="bio">Musician | Filmmaker | Editor</p>
     
     <div class="links">
         <div class="link-container">
