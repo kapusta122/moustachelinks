@@ -171,7 +171,7 @@
         .links {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 15px;
             width: 100%;
             max-width: 500px;
         }
@@ -217,14 +217,17 @@
             transform: translateY(-2px);
         }
         .music-services {
-            display: none;
+            max-height: 0;
+            overflow: hidden;
             flex-direction: column;
-            gap: 8px;
-            margin-top: 10px;
+            gap: 12px;
+            margin-top: 0;
             width: 100%;
+            transition: max-height 0.4s ease, margin-top 0.4s ease;
         }
         .music-services.active {
-            display: flex;
+            max-height: 500px;
+            margin-top: 15px;
         }
         .music-link-container {
             position: relative;
@@ -239,12 +242,12 @@
         .music-link {
             background: #252525;
             color: #e0e0e0;
-            padding: 10px;
+            padding: 12px; /* Увеличено до такого же размера как основные кнопки */
             border-radius: 4px;
             text-decoration: none;
             font-weight: bold;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Такой же как у основных кнопок */
+            transition: all 0.3s ease; /* Увеличена длительность как у основных */
             border: 1px solid #444;
             display: flex;
             align-items: center;
@@ -253,25 +256,25 @@
             z-index: 2;
             font-size: 14px;
         }
-        /* Подложки для музыкальных сервисов */
+        /* Подложки для музыкальных сервисов - такие же как у основных кнопок */
         .music-background {
             position: absolute;
-            bottom: -3px;
-            left: -2px;
+            bottom: -5px; /* Такой же отступ как у основных */
+            left: -3px; /* Такой же отступ как у основных */
             width: 100%;
             height: 100%;
             border-radius: 4px;
             z-index: 1;
             opacity: 0;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease; /* Такой же переход как у основных */
         }
         .music-link-container:hover .music-background {
             opacity: 1;
-            bottom: -4px;
-            left: -3px;
+            bottom: -7px; /* Такой же эффект как у основных */
+            left: -5px; /* Такой же эффект как у основных */
         }
         .music-link-container:hover .music-link {
-            transform: translateY(-1px);
+            transform: translateY(-2px); /* Такой же эффект как у основных */
         }
         /* Цвета для каждого сервиса */
         .spotify-bg { background: #1DB954; }
@@ -379,13 +382,17 @@
                 musicLinks.forEach((link, index) => {
                     setTimeout(() => {
                         link.classList.add('visible');
-                    }, index * 80); // Уменьшена задержка до 80ms
+                    }, index * 80);
                 });
             } else {
-                // Скрываем сервисы
+                // Скрываем сервисы последовательно (в обратном порядке)
                 const musicLinks = musicServices.querySelectorAll('.music-link-container');
-                musicLinks.forEach(link => {
-                    link.classList.remove('visible');
+                const totalLinks = musicLinks.length;
+                
+                musicLinks.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.classList.remove('visible');
+                    }, index * 80); // Одинаковый порядок для плавности
                 });
             }
         });
