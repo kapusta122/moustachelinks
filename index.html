@@ -16,6 +16,9 @@
             padding: 20px;
             position: relative;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         /* Фоновая картинка с размытием */
         body::before {
@@ -35,13 +38,15 @@
         }
         .profile-img-container {
             position: relative;
-            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin: 20px auto;
             perspective: 1000px;
         }
         .profile-card {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             position: relative;
             transform-style: preserve-3d;
             transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -55,12 +60,12 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 2px solid #333;
             box-shadow: 
-                0 12px 30px rgba(0, 0, 0, 0.7),
-                0 6px 15px rgba(0, 0, 0, 0.5),
-                0 3px 8px rgba(0, 0, 0, 0.4),
+                0 15px 35px rgba(0, 0, 0, 0.8),
+                0 8px 20px rgba(0, 0, 0, 0.6),
+                0 4px 10px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1),
                 0 0 0 1px rgba(255, 255, 255, 0.05);
         }
@@ -75,7 +80,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 8px;
         }
         .profile-back {
             background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
@@ -84,40 +89,48 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
             color: #ffffff;
             text-align: center;
         }
         .profile-back h3 {
-            margin: 0 0 8px 0;
-            font-size: 16px;
+            margin: 0 0 12px 0;
+            font-size: 18px;
             color: #EE7700;
+            font-weight: bold;
         }
         .profile-back p {
             margin: 0;
-            font-size: 12px;
-            line-height: 1.4;
+            font-size: 13px;
+            line-height: 1.5;
             color: #b0b0b0;
         }
         /* Дополнительная тень для глубины */
         .profile-img-container::after {
             content: '';
             position: absolute;
-            top: 8px;
-            left: 8px;
-            right: -8px;
-            bottom: -8px;
+            top: 12px;
+            left: 12px;
+            right: -12px;
+            bottom: -12px;
             background: rgba(0, 0, 0, 0.4);
-            border-radius: 10px;
+            border-radius: 14px;
             z-index: -1;
-            filter: blur(8px);
+            filter: blur(12px);
             transition: all 0.8s ease;
         }
         .profile-card.flipped ~ ::after {
             transform: scale(1.1);
         }
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 500px;
+        }
         h1 {
-            margin: 10px 0;
+            margin: 15px 0 5px 0;
             font-size: 24px;
             color: #ffffff;
         }
@@ -130,8 +143,8 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            width: 100%;
             max-width: 500px;
-            margin: 0 auto;
         }
         .link-container {
             position: relative;
@@ -238,6 +251,8 @@
             font-size: 14px;
             border-top: 1px solid #333;
             padding-top: 20px;
+            width: 100%;
+            max-width: 500px;
         }
         .cooperation-email {
             color: #ffffff;
@@ -251,68 +266,71 @@
     </style>
 </head>
 <body>
-    <div class="profile-img-container">
-        <div class="profile-card" id="profileCard">
-            <div class="profile-front">
-                <img src="img/head.jpg" alt="Фото профиля">
-            </div>
-            <div class="profile-back">
-                <h3>Mou-Stache</h3>
-                <p>Musician & Filmmaker creating unique audio-visual experiences</p>
-            </div>
-        </div>
-    </div>
-    <h1>Mou-Stache</h1>
-    <p class="bio">Musician | Filmmaker | Editor</p>
-    
-    <div class="links">
-        <div class="link-container">
-            <div class="link" id="musicButton">🎵 Music</div>
-            <div class="link-background"></div>
-        </div>
-        <div class="music-services" id="musicServices">
-            <div class="music-link-container">
-                <a href="https://spotify.com/ваш-профиль" class="music-link">Spotify</a>
-                <div class="music-background spotify-bg"></div>
-            </div>
-            <div class="music-link-container">
-                <a href="https://apple.music.com/ваш-профиль" class="music-link">Apple Music</a>
-                <div class="music-background apple-music-bg"></div>
-            </div>
-            <div class="music-link-container">
-                <a href="https://soundcloud.com/ваш-профиль" class="music-link">SoundCloud</a>
-                <div class="music-background soundcloud-bg"></div>
-            </div>
-            <div class="music-link-container">
-                <a href="https://bandcamp.com/ваш-профиль" class="music-link">Bandcamp</a>
-                <div class="music-background bandcamp-bg"></div>
-            </div>
-            <div class="music-link-container">
-                <a href="https://deezer.com/ваш-профиль" class="music-link">Deezer</a>
-                <div class="music-background deezer-bg"></div>
-            </div>
-            <div class="music-link-container">
-                <a href="https://yandex.music.com/ваш-профиль" class="music-link">Yandex Music</a>
-                <div class="music-background yandex-music-bg"></div>
+    <div class="content-wrapper">
+        <div class="profile-img-container">
+            <div class="profile-card" id="profileCard">
+                <div class="profile-front">
+                    <img src="img/head.jpg" alt="Фото профиля">
+                </div>
+                <div class="profile-back">
+                    <h3>Mou-Stache</h3>
+                    <p>Musician & Filmmaker creating unique audio-visual experiences</p>
+                </div>
             </div>
         </div>
-        <div class="link-container">
-            <a href="https://youtube.com/@moustnpmkn17?si=MtOw5nzHsVN2ZpSi" class="link">▶ YouTube</a>
-            <div class="link-background"></div>
+        
+        <h1>Mou-Stache</h1>
+        <p class="bio">Musician | Filmmaker | Editor</p>
+        
+        <div class="links">
+            <div class="link-container">
+                <div class="link" id="musicButton">🎵 Music</div>
+                <div class="link-background"></div>
+            </div>
+            <div class="music-services" id="musicServices">
+                <div class="music-link-container">
+                    <a href="https://spotify.com/ваш-профиль" class="music-link">Spotify</a>
+                    <div class="music-background spotify-bg"></div>
+                </div>
+                <div class="music-link-container">
+                    <a href="https://apple.music.com/ваш-профиль" class="music-link">Apple Music</a>
+                    <div class="music-background apple-music-bg"></div>
+                </div>
+                <div class="music-link-container">
+                    <a href="https://soundcloud.com/ваш-профиль" class="music-link">SoundCloud</a>
+                    <div class="music-background soundcloud-bg"></div>
+                </div>
+                <div class="music-link-container">
+                    <a href="https://bandcamp.com/ваш-профиль" class="music-link">Bandcamp</a>
+                    <div class="music-background bandcamp-bg"></div>
+                </div>
+                <div class="music-link-container">
+                    <a href="https://deezer.com/ваш-профиль" class="music-link">Deezer</a>
+                    <div class="music-background deezer-bg"></div>
+                </div>
+                <div class="music-link-container">
+                    <a href="https://yandex.music.com/ваш-профиль" class="music-link">Yandex Music</a>
+                    <div class="music-background yandex-music-bg"></div>
+                </div>
+            </div>
+            <div class="link-container">
+                <a href="https://youtube.com/@moustnpmkn17?si=MtOw5nzHsVN2ZpSi" class="link">▶ YouTube</a>
+                <div class="link-background"></div>
+            </div>
+            <div class="link-container">
+                <a href="https://www.instagram.com/moustnpmkn17?igsh=eWIzdm01N2p0em4z&utm_source=qr" class="link">📷 Instagram</a>
+                <div class="link-background"></div>
+            </div>
+            <div class="link-container">
+                <a href="https://t.me/MouStachePortfolio" class="link">✈️ Telegram</a>
+                <div class="link-background"></div>
+            </div>
         </div>
-        <div class="link-container">
-            <a href="https://www.instagram.com/moustnpmkn17?igsh=eWIzdm01N2p0em4z&utm_source=qr" class="link">📷 Instagram</a>
-            <div class="link-background"></div>
-        </div>
-        <div class="link-container">
-            <a href="https://t.me/MouStachePortfolio" class="link">✈️ Telegram</a>
-            <div class="link-background"></div>
-        </div>
-    </div>
 
-    <div class="cooperation">
-        cooperation<br>
-        <div class="cooperation-email">mousthenpmkn@gmail.com</div>
+        <div class="cooperation">
+            cooperation<br>
+            <div class="cooperation-email">mousthenpmkn@gmail.com</div>
+        </div>
     </div>
 
     <script>
