@@ -234,24 +234,96 @@
         .link-container:hover .link {
             transform: translateY(-3px) scale(1.03);
         }
-        .music-services {
+        /* Стили для секции альбома */
+        .album-section {
             max-height: 0;
             overflow: hidden;
-            flex-direction: column;
-            gap: 12px;
             margin-top: 0;
             width: 100%;
-            transition: max-height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), margin-top 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.5s ease;
+            opacity: 0;
         }
-        .music-services.active {
-            max-height: 500px;
+        .album-section.active {
+            max-height: 600px; /* Увеличил высоту */
             margin-top: 12px;
+            opacity: 1;
+            padding-bottom: 20px; /* Добавил отступ снизу */
+        }
+        .album-message {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .album-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            position: relative;
+            width: 100%;
+            min-height: 200px;
+        }
+        .album-cover {
+            width: 200px;
+            height: 200px;
+            background: #252525;
+            border-radius: 12px;
+            border: 3px solid #444;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #b0b0b0;
+            font-size: 14px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .album-cover:hover {
+            transform: translateX(-50%) scale(1.05);
+        }
+        .album-cover.moved {
+            width: 120px;
+            height: 120px;
+            transform: translateX(0);
+            border-radius: 8px;
+            opacity: 0.7;
+            filter: brightness(0.8);
+            position: relative;
+            left: 0;
+        }
+        .album-cover.moved:hover {
+            transform: scale(1);
+            opacity: 0.8;
+            filter: brightness(0.9);
+        }
+        .music-services {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            margin-left: 0;
+            min-width: 0;
+            margin-bottom: 10px; /* Добавил отступ снизу */
+        }
+        .music-services.visible {
+            transform: translateX(0);
+            opacity: 1;
         }
         .music-link-container {
             position: relative;
             opacity: 0;
             transform: translateY(-10px);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.2s ease;
             width: 100%;
         }
         .music-link-container.visible {
@@ -266,7 +338,7 @@
             text-decoration: none;
             font-weight: bold;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.3s ease;
             border: 1px solid #444;
             display: flex;
             align-items: center;
@@ -278,24 +350,24 @@
             box-sizing: border-box;
             transform: scale(1);
         }
-        /* Подложки для музыкальных сервисов */
+        /* Подложки для музыкальных сервисов - уменьшены */
         .music-background {
             position: absolute;
-            bottom: -6px;
-            left: 2px;
-            width: calc(100% - 4px);
-            height: calc(100% - 2px);
+            bottom: -4px;
+            left: 1px;
+            width: calc(100% - 2px);
+            height: calc(100% - 1px);
             border-radius: 4px;
             z-index: 1;
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.3s ease;
         }
         .music-link-container:hover .music-background {
             opacity: 1;
-            bottom: -8px;
+            bottom: -5px;
         }
         .music-link-container:hover .music-link {
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-2px) scale(1.02);
         }
         /* Цвета для каждого сервиса */
         .spotify-bg { background: #1DB954; }
@@ -346,32 +418,42 @@
                 <div class="link" id="musicButton">🎵 Music</div>
                 <div class="link-background"></div>
             </div>
-            <div class="music-services" id="musicServices">
-                <div class="music-link-container">
-                    <a href="https://spotify.com/ваш-профиль" class="music-link">Spotify</a>
-                    <div class="music-background spotify-bg"></div>
-                </div>
-                <div class="music-link-container">
-                    <a href="https://apple.music.com/ваш-профиль" class="music-link">Apple Music</a>
-                    <div class="music-background apple-music-bg"></div>
-                </div>
-                <div class="music-link-container">
-                    <a href="https://soundcloud.com/ваш-профиль" class="music-link">SoundCloud</a>
-                    <div class="music-background soundcloud-bg"></div>
-                </div>
-                <div class="music-link-container">
-                    <a href="https://bandcamp.com/ваш-профиль" class="music-link">Bandcamp</a>
-                    <div class="music-background bandcamp-bg"></div>
-                </div>
-                <div class="music-link-container">
-                    <a href="https://deezer.com/ваш-профиль" class="music-link">Deezer</a>
-                    <div class="music-background deezer-bg"></div>
-                </div>
-                <div class="music-link-container">
-                    <a href="https://yandex.music.com/ваш-профиль" class="music-link">Yandex Music</a>
-                    <div class="music-background yandex-music-bg"></div>
+            
+            <div class="album-section" id="albumSection">
+                <div class="album-message">my new album is out now!</div>
+                <div class="album-container">
+                    <div class="album-cover" id="albumCover">
+                        Album Cover
+                    </div>
+                    <div class="music-services" id="musicServices">
+                        <div class="music-link-container">
+                            <a href="https://spotify.com/ваш-профиль" class="music-link">Spotify</a>
+                            <div class="music-background spotify-bg"></div>
+                        </div>
+                        <div class="music-link-container">
+                            <a href="https://apple.music.com/ваш-профиль" class="music-link">Apple Music</a>
+                            <div class="music-background apple-music-bg"></div>
+                        </div>
+                        <div class="music-link-container">
+                            <a href="https://soundcloud.com/ваш-профиль" class="music-link">SoundCloud</a>
+                            <div class="music-background soundcloud-bg"></div>
+                        </div>
+                        <div class="music-link-container">
+                            <a href="https://bandcamp.com/ваш-профиль" class="music-link">Bandcamp</a>
+                            <div class="music-background bandcamp-bg"></div>
+                        </div>
+                        <div class="music-link-container">
+                            <a href="https://deezer.com/ваш-профиль" class="music-link">Deezer</a>
+                            <div class="music-background deezer-bg"></div>
+                        </div>
+                        <div class="music-link-container">
+                            <a href="https://yandex.music.com/ваш-профиль" class="music-link">Yandex Music</a>
+                            <div class="music-background yandex-music-bg"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
             <div class="link-container">
                 <a href="https://youtube.com/@moustnpmkn17?si=MtOw5nzHsVN2ZpSi" class="link">▶ YouTube</a>
                 <div class="link-background"></div>
@@ -393,30 +475,98 @@
     </div>
 
     <script>
+        let isAlbumExpanded = false;
+
         document.getElementById('musicButton').addEventListener('click', function() {
-            const musicServices = document.getElementById('musicServices');
-            const isActive = musicServices.classList.toggle('active');
+            const albumSection = document.getElementById('albumSection');
+            const isActive = albumSection.classList.toggle('active');
             
-            if (isActive) {
-                // Показываем сервисы последовательно
+            if (isActive && !isAlbumExpanded) {
+                // Сбрасываем состояние при открытии
+                resetAlbumState();
+            } else if (!isActive) {
+                // При закрытии плавно скрываем всё
+                const musicServices = document.getElementById('musicServices');
+                const musicLinks = musicServices.querySelectorAll('.music-link-container');
+                const totalLinks = musicLinks.length;
+                
+                // Скрываем сервисы последовательно снизу вверх
+                musicLinks.forEach((link, index) => {
+                    setTimeout(() => {
+                        link.classList.remove('visible');
+                    }, (totalLinks - 1 - index) * 50); // Обратный порядок - снизу вверх
+                });
+                
+                // Скрываем контейнер сервисов
+                setTimeout(() => {
+                    musicServices.classList.remove('visible');
+                }, totalLinks * 50);
+                
+                // Возвращаем обложку только после полного исчезновения сервисов
+                setTimeout(() => {
+                    document.getElementById('albumCover').classList.remove('moved');
+                }, totalLinks * 50 + 100);
+                
+                isAlbumExpanded = false;
+            }
+        });
+
+        document.getElementById('albumCover').addEventListener('click', function() {
+            if (!isAlbumExpanded) {
+                // Первое нажатие - двигаем обложку и показываем сервисы
+                this.classList.add('moved');
+                const musicServices = document.getElementById('musicServices');
+                musicServices.classList.add('visible');
+                
+                // Показываем сервисы последовательно сверху вниз
                 const musicLinks = musicServices.querySelectorAll('.music-link-container');
                 musicLinks.forEach((link, index) => {
                     setTimeout(() => {
                         link.classList.add('visible');
-                    }, index * 80);
+                    }, index * 50);
                 });
+                
+                isAlbumExpanded = true;
             } else {
-                // Скрываем сервисы последовательно (в обратном порядке для красивого эффекта)
+                // Второе нажатие - плавно скрываем сервисы снизу вверх и возвращаем обложку
+                const musicServices = document.getElementById('musicServices');
                 const musicLinks = musicServices.querySelectorAll('.music-link-container');
                 const totalLinks = musicLinks.length;
                 
+                // Скрываем сервисы последовательно снизу вверх
                 musicLinks.forEach((link, index) => {
                     setTimeout(() => {
                         link.classList.remove('visible');
-                    }, (totalLinks - 1 - index) * 80); // Обратный порядок
+                    }, (totalLinks - 1 - index) * 50); // Обратный порядок - снизу вверх
                 });
+                
+                // Скрываем контейнер сервисов
+                setTimeout(() => {
+                    musicServices.classList.remove('visible');
+                }, totalLinks * 50);
+                
+                // Возвращаем обложку только после полного исчезновения сервисов
+                setTimeout(() => {
+                    this.classList.remove('moved');
+                }, totalLinks * 50 + 100);
+                
+                isAlbumExpanded = false;
             }
         });
+
+        function resetAlbumState() {
+            const albumCover = document.getElementById('albumCover');
+            const musicServices = document.getElementById('musicServices');
+            const musicLinks = musicServices.querySelectorAll('.music-link-container');
+            
+            albumCover.classList.remove('moved');
+            musicServices.classList.remove('visible');
+            musicLinks.forEach(link => {
+                link.classList.remove('visible');
+            });
+            
+            isAlbumExpanded = false;
+        }
 
         // Анимация переворота фото профиля с затемнением фона
         const profileCard = document.getElementById('profileCard');
